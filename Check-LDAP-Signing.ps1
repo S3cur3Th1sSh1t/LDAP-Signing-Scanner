@@ -9,7 +9,7 @@ $FQDN
 
     [System.Reflection.Assembly]::LoadWithPartialName("System.DirectoryServices.Protocols")
     
-    Write-Verbose -ForegroundColor Red "`nTesting LDAP without signing"
+    Write-Verbose "`nTesting LDAP without signing"
     
     $LDAPSigningEnforced = $true
     $LDAPSSigningEnforced = $true
@@ -35,7 +35,7 @@ $FQDN
         $LDAPSigningEnforced = $false
     }
     
-    Write-Verbose -ForegroundColor Red "`n`n`nTesting LDAPS without signing"
+    Write-Verbose "`n`n`nTesting LDAPS without signing"
     $Port = 636
     $dn = "$ServerName"+":"+"$Port"
     $c = New-Object System.DirectoryServices.Protocols.LdapConnection $dn
