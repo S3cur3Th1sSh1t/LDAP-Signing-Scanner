@@ -36,7 +36,7 @@ namespace Check_LDAP_Signing
                 Console.WriteLine("[-] LDAP not accessible");
             }
 
-            if (!(c.SessionOptions.Signing))
+            if (c.SessionOptions.Signing != true)
             {
                 LDAPSigningEnforced = false;
             }
@@ -52,33 +52,33 @@ namespace Check_LDAP_Signing
 
             try
             {
-                c.Bind();
+                d.Bind();
             }
             catch
             {
                 Console.WriteLine("[-] LDAPS not accessible");
             }
 
-            if (!(c.SessionOptions.Signing))
+            if (d.SessionOptions.Signing != true)
             {
                 LDAPSSigningEnforced = false;
             }
 
             if (LDAPSigningEnforced && !(LDAPSSigningEnforced))
             {
-                Console.WriteLine("[+] " + DN + " has LDAP configured in the state 'Negotiate signing', relaying to LDAPS is therefore possible!");
+                Console.WriteLine("[+] " + hostname + " has LDAP configured in the state 'Negotiate signing', relaying to LDAPS is therefore possible!");
             }
             else if(!(LDAPSigningEnforced) &&!(LDAPSSigningEnforced))
             {
-                Console.WriteLine("[+] " + DN + " has LDAP configured in the state 'none', relaying to LDAP and LDAPS is therefore possible!");
+                Console.WriteLine("[+] " + hostname + " has LDAP configured in the state 'none', relaying to LDAP and LDAPS is therefore possible!");
             }
             else if(LDAPSigningEnforced && LDAPSSigningEnforced)
             {
-                Console.WriteLine("[-] " + DN + " has LDAP configured in the state 'Require Signing', relaying is not possible!");
+                Console.WriteLine("[-] " + hostname + " has LDAP configured in the state 'Require Signing', relaying is not possible!");
             }
             else if(!(LDAPSigningEnforced) && LDAPSSigningEnforced)
             {
-                Console.WriteLine("[+] " + DN + " has LDAP configured in the state 'none' or 'Negotiate signing' without LDAPS in use, relaying to LDAP is possible!");
+                Console.WriteLine("[+] " + hostname + " has LDAP configured in the state 'none' or 'Negotiate signing' without LDAPS in use, relaying to LDAP is possible!");
             }
         }
     }
