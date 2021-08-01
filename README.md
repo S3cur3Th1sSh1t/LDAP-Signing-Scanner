@@ -1,7 +1,7 @@
 # LDAP-Signing-Scanner
 A little scanner to check the LDAP Signing state.
 
-The idea is to connect to a DC via LDAP and LDAPS with signing set to false from the client side. The DC can either force signing and ignore the client request or accept it to not use signing.
+The idea is to connect to a DC via LDAP and LDAPS with signing set to false from the client side (caller specified option). The DC can either force signing and ignore the client request or accept it to not use signing.
 
 The results from both connections tell us which option is in use:
 
