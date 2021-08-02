@@ -1,4 +1,4 @@
-﻿Function Check-LDAP-Signing
+Function Check-LDAP-Signing
 {
 
 param(
@@ -33,10 +33,10 @@ $FQDN
     {
         Write-Verbose "`nLDAP not accessible`n"
         $LDAPSigningEnforced = $true
-        $c.SessionOptions.Signing = $true
+        $LDAPNotAvailable = $true
     }
     
-    if (!($c.SessionOptions.Signing))
+    if (!($c.SessionOptions.Signing) -and !($LDAPNotAvailable))
     {
         $LDAPSigningEnforced = $false
     }
@@ -60,10 +60,10 @@ $FQDN
     {
         Write-Verbose "`nLDAPS not accessible`n"
         $LDAPSSigningEnforced = $true
-        $c.SessionOptions.Signing = $true
+        $LDAPSNotAvailable = $true
     }
  
-    if (!($c.SessionOptions.Signing))
+    if (!($c.SessionOptions.Signing) -and !($LDAPSNotAvailable))
     {
         $LDAPSSigningEnforced = $false
     }
