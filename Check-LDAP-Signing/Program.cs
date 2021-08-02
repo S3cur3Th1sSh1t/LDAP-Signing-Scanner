@@ -17,6 +17,8 @@ namespace Check_LDAP_Signing
 
             bool LDAPSigningEnforced = true;
             bool LDAPSSigningEnforced = true;
+            bool LDAPAvailable = true;
+            bool LDAPSAvailable = true;
 
             int Port = 389;
             string DN = hostname + ":" + Port;
@@ -34,9 +36,10 @@ namespace Check_LDAP_Signing
             catch 
             {
                 Console.WriteLine("[-] LDAP not accessible");
+                LDAPAvailable = false;
             }
 
-            if (c.SessionOptions.Signing != true)
+            if (c.SessionOptions.Signing != true && LDAPAvailable)
             {
                 LDAPSigningEnforced = false;
             }
@@ -57,9 +60,10 @@ namespace Check_LDAP_Signing
             catch
             {
                 Console.WriteLine("[-] LDAPS not accessible");
+                LDAPSAvailable = false;
             }
 
-            if (d.SessionOptions.Signing != true)
+            if (d.SessionOptions.Signing != true && LDAPSAvailable)
             {
                 LDAPSSigningEnforced = false;
             }
