@@ -28,7 +28,13 @@ $FQDN
     try
     {
         $c.Bind()
-    }catch{Write-Verbose "`nLDAP not accessible`n"}
+    }
+    catch
+    {
+        Write-Verbose "`nLDAP not accessible`n"
+        $LDAPSigningEnforced = $true
+        $c.SessionOptions.Signing = $true
+    }
     
     if (!($c.SessionOptions.Signing))
     {
@@ -49,8 +55,13 @@ $FQDN
     try
     {
         $c.Bind()
-    }catch{Write-Verbose "`nLDAPS not accessible`n"}
-    
+    }
+    catch
+    {
+        Write-Verbose "`nLDAPS not accessible`n"
+        $LDAPSSigningEnforced = $true
+        $c.SessionOptions.Signing = $true
+    }
  
     if (!($c.SessionOptions.Signing))
     {
